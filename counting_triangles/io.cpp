@@ -14,4 +14,4 @@ void readInput(std::istream &is, size_t &N, std::vector<double> &R) {
   }
 }
 
-void printOutput() {}
+void printOutput(std::ostream &os, int &M) { os << M << std::endl; }

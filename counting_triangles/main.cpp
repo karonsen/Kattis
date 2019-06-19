@@ -1,10 +1,11 @@
+#include "aux.h"
 #include "class_intersectionList.h"
 #include "class_line.h"
 #include "io.h"
 #include <iostream>
 #include <vector>
 
-int main(int argc, char *argv[]) {
+int main() {
 
   // Keep looping until the input signals that the program is done.
   while (true) {
@@ -35,9 +36,8 @@ int main(int argc, char *argv[]) {
 #endif
 
     // Construct Line objects from coordinates.
-    lines.resize(N);
     for (size_t n = 0; n < N; n++) {
-      lines[n] = Line(R[n], R[n + 1], R[n + 2], R[n + 3]);
+      lines.push_back(Line(R[n], R[n + 1], R[n + 2], R[n + 3]));
     }
 
     // TODO Find all line intersections.
@@ -51,5 +51,7 @@ int main(int argc, char *argv[]) {
     // TODO For each line:
     //	For each pair of intersections:
     // 	  Determine if the intersecting lines also intersect with each others.
+    int M = countTriangles(il, N);
+    printOutput(std::cout, M);
   }
 }

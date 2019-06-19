@@ -5,6 +5,6 @@
 #include <vector>
 
 void readInput(std::istream &, size_t &, std::vector<double> &);
-void printOutput();
+void printOutput(std::ostream &, int &);
 
 #endif /* ifndef IO_H */

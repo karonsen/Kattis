@@ -18,6 +18,10 @@ TEST_CASE("Testing class IntersectionList.", "[IntersectionList]") {
   std::vector<Line> lineList3 = {l1, l2, l3, l4};
   std::vector<Line> lineList4 = {l1, l2, l3, l4, l5, l1, l2, l3, l4, l5};
   std::vector<Line> lineList5 = {l1, l3, l2};
+  std::vector<Line> lineList6;
+
+  lineList6.push_back(l1);
+  lineList6.push_back(l2);
 
   // Create IntersectionList object.
   IntersectionList il1;
