@@ -5,7 +5,19 @@
 #include <stddef.h>
 #include <vector>
 
-class IntersectionList{
+// Helper class for coordinates of intersections.
+class Coordinate {
+  double m_x;
+  double m_y;
+
+public:
+  Coordinate(double x, double y); // : m_x(x), m_y(y) {}
+  Coordinate();                   // : coordinate(-1, -1) {}
+  double getX();                  // { return m_x; }
+  double getY();                  // { return m_y; }
+};
+
+class IntersectionList {
   // intersections - List over which lines intersect.
   // N - Number of lines in total.
   size_t m_N;

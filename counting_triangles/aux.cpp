@@ -1,8 +1,9 @@
 #include "aux.h"
 #include <iostream>
 
-int countTriangles(IntersectionList &il, size_t &N) {
+int countTriangles(IntersectionList &il) {
   int M = 0;
+  size_t N = il.getN();
 
   for (size_t n1 = 0; n1 < N - 2; n1++) {
     for (size_t n2 = n1 + 1; n2 < N - 1; n2++) {

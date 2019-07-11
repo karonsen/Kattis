@@ -5,6 +5,6 @@
 #include "class_line.h"
 #include <vector>
 
-int countTriangles(IntersectionList &, size_t &);
+int countTriangles(IntersectionList &);
 
 #endif /* ifndef AUX_H */

@@ -66,3 +66,9 @@ std::vector<bool> IntersectionList::getIntersections() {
   return m_intersections;
 }
 std::vector<size_t> IntersectionList::getLineIndices() { return m_lineIndices; }
+
+Coordinate::Coordinate(double x, double y) : m_x(x), m_y(y) {}
+Coordinate::Coordinate() : Coordinate(-1, -1) {}
+double Coordinate::getX() { return m_x; }
+double Coordinate::getY() { return m_y; }
+
