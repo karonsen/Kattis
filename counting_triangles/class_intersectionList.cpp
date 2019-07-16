@@ -4,10 +4,13 @@
 #include <iostream>
 
 // Class: Coordinate
-Coordinate::Coordinate(double x, double y) : m_x(x), m_y(y) {}
-Coordinate::Coordinate() : Coordinate(-1, -1) {}
+Coordinate::Coordinate(double x, double y) : m_inter(true), m_x(x), m_y(y) {}
+Coordinate::Coordinate() : m_inter(false), m_x(-1), m_y(-1) {}
 double Coordinate::getX() { return m_x; }
 double Coordinate::getY() { return m_y; }
+void Coordinate::setX(double x) { m_x = x; }
+void Coordinate::setY(double y) { m_y = y; }
+bool Coordinate::intersect() { return m_inter; }
 
 double Coordinate::distance(Coordinate &coord) {
   return ::distance(*this, coord);
@@ -21,7 +24,7 @@ double distance(Coordinate &coord1, Coordinate &coord2) {
 
 // Class: IntersectionList
 IntersectionList::IntersectionList()
-    : m_N(0), m_M(0), m_intersections(3, 0), m_lineIndices(3, 0) {}
+    : m_N(0), m_M(0), m_intersections(3, Coordinate()), m_lineIndices(3, 0) {}
 
 IntersectionList::IntersectionList(std::vector<Line> &lines)
     : IntersectionList() {
@@ -52,7 +55,7 @@ size_t IntersectionList::calculateIntersections(std::vector<Line> &lines) {
   // 	occurs between the two lines (value true) or not (value false).
 
   m_lineIndices = std::vector<size_t>(m_N - 1, 0);
-  m_intersections = std::vector<bool>(m_M, 0);
+  m_intersections = std::vector<Coordinate>(m_M, Coordinate());
 
   // Step through pairs of lines and determine if they intersect.
   // m - Index for list. Incremented each iteration of the inner loop.
@@ -60,7 +63,6 @@ size_t IntersectionList::calculateIntersections(std::vector<Line> &lines) {
   for (size_t n1 = 0; n1 < m_N - 1; n1++) {
     m_lineIndices[n1] = m;
     for (size_t n2 = n1 + 1; n2 < m_N; n2++) {
-      auto x = lines[n1];
       m_intersections[m] = intersect(lines[n1], lines[n2]);
       m++;
     }
@@ -71,7 +73,7 @@ size_t IntersectionList::calculateIntersections(std::vector<Line> &lines) {
 }
 
 bool IntersectionList::checkIntersect(size_t i, size_t j) {
-  return m_intersections[getIndex(i, j)];
+  return m_intersections[getIndex(i, j)].intersect();
 }
 
 size_t IntersectionList::getIndex(size_t i, size_t j) {
@@ -88,6 +90,10 @@ size_t IntersectionList::getIndex(size_t i, size_t j) {
 size_t IntersectionList::getN() { return m_N; }
 size_t IntersectionList::getM() { return m_M; }
 std::vector<bool> IntersectionList::getIntersections() {
-  return m_intersections;
+  std::vector<bool> vec;
+  for (auto &e : m_intersections) {
+    vec.push_back(e.intersect());
+  }
+  return vec;
 }
 std::vector<size_t> IntersectionList::getLineIndices() { return m_lineIndices; }

@@ -1,6 +1,8 @@
 #ifndef CLASS_LINE_H
 #define CLASS_LINE_H
 
+#include "class_intersectionList.h"
+
 class Line{
   double m_x1;
   double m_y1;
@@ -15,9 +17,9 @@ public:
   double getY1();
   double getY2();
 
-  bool intersect(Line &);
+  Coordinate intersect(Line &);
 };
 
-bool intersect(Line &, Line &);
+Coordinate intersect(Line &, Line &);
 
 #endif /* ifndef CLASS_LINE_H */

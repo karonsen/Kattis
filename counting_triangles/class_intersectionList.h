@@ -7,14 +7,19 @@
 
 // Helper class for coordinates of intersections.
 class Coordinate {
+  // If false the coordinate denotes a 'invalid' intersection. False by default.
+  bool m_inter;
   double m_x;
   double m_y;
 
 public:
-  Coordinate(double x, double y); // : m_x(x), m_y(y) {}
-  Coordinate();                   // : coordinate(-1, -1) {}
-  double getX();                  // { return m_x; }
-  double getY();                  // { return m_y; }
+  Coordinate(double x, double y);
+  Coordinate();
+  double getX();
+  double getY();
+  void setX(double x);
+  void setY(double y);
+  bool intersect();
   double distance(Coordinate &);
 };
 
@@ -25,7 +30,7 @@ class IntersectionList {
   // N - Number of lines in total.
   size_t m_N;
   size_t m_M;
-  std::vector<bool> m_intersections;
+  std::vector<Coordinate> m_intersections;
   std::vector<size_t> m_lineIndices;
 
 public:
