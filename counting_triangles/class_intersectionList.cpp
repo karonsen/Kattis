@@ -1,13 +1,37 @@
 #include "class_intersectionList.h"
 #include "class_line.h"
+#include <cmath>
 #include <iostream>
 
+// Class: Coordinate
+Coordinate::Coordinate(double x, double y) : m_x(x), m_y(y) {}
+Coordinate::Coordinate() : Coordinate(-1, -1) {}
+double Coordinate::getX() { return m_x; }
+double Coordinate::getY() { return m_y; }
+
+double Coordinate::distance(Coordinate &coord) {
+  return ::distance(*this, coord);
+}
+
+double distance(Coordinate &coord1, Coordinate &coord2) {
+  double dx = pow(coord1.getX() - coord2.getX(), 2);
+  double dy = pow(coord1.getY() - coord2.getY(), 2);
+  return sqrt(dx + dy);
+}
+
+// Class: IntersectionList
 IntersectionList::IntersectionList()
     : m_N(0), m_M(0), m_intersections(3, 0), m_lineIndices(3, 0) {}
 
 IntersectionList::IntersectionList(std::vector<Line> &lines)
     : IntersectionList() {
   this->calculateIntersections(lines);
+}
+
+IntersectionList::IntersectionList(std::initializer_list<Line> lines)
+    : IntersectionList() {
+  std::vector<Line> vec = lines;
+  this->calculateIntersections(vec);
 }
 
 size_t IntersectionList::calculateIntersections(std::vector<Line> &lines) {
@@ -36,6 +60,7 @@ size_t IntersectionList::calculateIntersections(std::vector<Line> &lines) {
   for (size_t n1 = 0; n1 < m_N - 1; n1++) {
     m_lineIndices[n1] = m;
     for (size_t n2 = n1 + 1; n2 < m_N; n2++) {
+      auto x = lines[n1];
       m_intersections[m] = intersect(lines[n1], lines[n2]);
       m++;
     }
@@ -66,9 +91,3 @@ std::vector<bool> IntersectionList::getIntersections() {
   return m_intersections;
 }
 std::vector<size_t> IntersectionList::getLineIndices() { return m_lineIndices; }
-
-Coordinate::Coordinate(double x, double y) : m_x(x), m_y(y) {}
-Coordinate::Coordinate() : Coordinate(-1, -1) {}
-double Coordinate::getX() { return m_x; }
-double Coordinate::getY() { return m_y; }
-

@@ -5,7 +5,7 @@ set(CMAKE_CXX_FLAGS "-std=c++11 -pg -g -pedantic")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(SRC io.cpp class_line.cpp class_intersectionList.cpp aux.cpp)
-set(TEST test_io.cpp test_line.cpp test_intersect.cpp test_cmake_catch.cpp test_countTriangles.cpp)
+set(TEST test_io.cpp test_line.cpp test_intersect.cpp test_cmake_catch.cpp test_countTriangles.cpp test_coordinate.cpp)
 #set(TEST test_io.cpp test_line.cpp test_cmake_catch.cpp)
 add_executable(counting_triangles main.cpp ${SRC})
 add_executable(debug main.cpp ${SRC})

@@ -15,7 +15,10 @@ public:
   Coordinate();                   // : coordinate(-1, -1) {}
   double getX();                  // { return m_x; }
   double getY();                  // { return m_y; }
+  double distance(Coordinate &);
 };
+
+double distance(Coordinate &, Coordinate &);
 
 class IntersectionList {
   // intersections - List over which lines intersect.
@@ -28,6 +31,7 @@ class IntersectionList {
 public:
   IntersectionList();
   IntersectionList(std::vector<Line> &);
+  IntersectionList(std::initializer_list<Line>);
   size_t calculateIntersections(std::vector<Line> &);
   bool checkIntersect(size_t, size_t);
 
