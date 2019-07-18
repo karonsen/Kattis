@@ -1,7 +1,7 @@
 #ifndef CLASS_LINE_H
 #define CLASS_LINE_H
 
-#include "class_intersectionList.h"
+class Coordinate;
 
 class Line{
   double m_x1;

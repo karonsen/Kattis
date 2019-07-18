@@ -24,7 +24,12 @@ int countTriangles(IntersectionList &il) {
             // each other a triangle has been found. Increment triangle counter.
             bool int23 = il.checkIntersect(n2, n3);
             if (int23 == true) {
-              M++;
+
+              // Finally check that the intersections do not ocurr on the same
+              // point.
+              if (il.validTriangle(n1, n2, n3)) {
+                M++;
+              }
             }
           }
         }

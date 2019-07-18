@@ -39,12 +39,14 @@ public:
   IntersectionList(std::initializer_list<Line>);
   size_t calculateIntersections(std::vector<Line> &);
   bool checkIntersect(size_t, size_t);
+  double validTriangle(size_t, size_t, size_t);
 
   size_t getIndex(size_t, size_t j);
   size_t getN();
   size_t getM();
   std::vector<bool> getIntersections();
   std::vector<size_t> getLineIndices();
+  std::vector<Coordinate> getCoordinates();
 };
 
 #endif /* ifndef CLASS_INTERSECTION_LIST_H */

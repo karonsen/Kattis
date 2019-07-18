@@ -50,6 +50,10 @@ Coordinate intersect(Line &l1, Line &l2) {
     return Coordinate();
   }
 
-  // TODO: Return coordinate of intersection here.
-  return Coordinate();
+  // Calculate coordinates for intersection and return a intersection
+  // coordinate.
+  double x_in = x1 + t * (x2 - x1);
+  double y_in = y1 + t * (y2 - y1);
+
+  return Coordinate(x_in, y_in);
 }

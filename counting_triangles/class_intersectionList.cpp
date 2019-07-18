@@ -76,6 +76,17 @@ bool IntersectionList::checkIntersect(size_t i, size_t j) {
   return m_intersections[getIndex(i, j)].intersect();
 }
 
+double IntersectionList::validTriangle(size_t i, size_t j, size_t k) {
+  double TOL = 1e-10;
+  Coordinate c1 = m_intersections[getIndex(i, j)];
+  Coordinate c2 = m_intersections[getIndex(i, k)];
+  double dist = fabs(distance(c1, c2));
+  if (dist < TOL)
+    return false;
+  else
+    return true;
+}
+
 size_t IntersectionList::getIndex(size_t i, size_t j) {
   size_t m = 0;
   size_t mx = i > j ? i : j;
@@ -95,5 +106,8 @@ std::vector<bool> IntersectionList::getIntersections() {
     vec.push_back(e.intersect());
   }
   return vec;
+}
+std::vector<Coordinate> IntersectionList::getCoordinates() {
+  return m_intersections;
 }
 std::vector<size_t> IntersectionList::getLineIndices() { return m_lineIndices; }
