@@ -37,21 +37,39 @@ int main() {
 
     // Construct Line objects from coordinates.
     for (size_t n = 0; n < N; n++) {
-      lines.push_back(Line(R[n], R[n + 1], R[n + 2], R[n + 3]));
+
+      size_t x1 = 4 * n + 0;
+      size_t y1 = 4 * n + 1;
+      size_t x2 = 4 * n + 2;
+      size_t y2 = 4 * n + 3;
+
+#ifdef DEBUG
+      std::cout << "line " << n << ": ";
+      std::cout << R[x1] << " " << R[y1] << " ";
+      std::cout << R[x2] << " " << R[y2] << std::endl;
+#endif
+
+      lines.push_back(Line(R[x1], R[y1], R[x2], R[y2]));
     }
 
-    // TODO Find all line intersections.
-    //  List (N-1) + (N-2) ... + 1 elements. Element 0 denotes whether or not
-    //  lines 0 and 1 intersect by true or false, element 1 the intersection
-    //  between lines 1 and 2 etc.
-    // std::vector<bool> intersectionList;
-    // fillIntersectionList(intersectionList, N, lines);
     IntersectionList il(lines);
 
-    // TODO For each line:
-    //	For each pair of intersections:
-    // 	  Determine if the intersecting lines also intersect with each others.
-    int M = countTriangles(il, N);
+    int M = countTriangles(il);
+
+#ifdef DEBUG
+    size_t ilN = il.getN();
+    size_t ilM = il.getM();
+    std::vector<bool> insec = il.getIntersections();
+
+    std::cout << "Number of lines: " << lines.size() << std::endl;
+    std::cout << "IL N: " << ilN << std::endl;
+    std::cout << "IL M: " << ilM << std::endl;
+    std::cout << "Insec: ";
+    for (auto e : insec) {
+      std::cout << e << " ";
+    }
+    std::cout << std::endl;
+#endif
     printOutput(std::cout, M);
   }
 }

@@ -1,6 +1,7 @@
 #include "aux.h"
 #include "class_line.h"
 #include <catch2/catch.hpp>
+#include <iostream>
 
 TEST_CASE("Testing countTriangles.", "[countTriangles]") {
   Line l1(1, 1, 2, 1);
@@ -79,6 +80,25 @@ TEST_CASE("Testing counting triangles in the 'box'.", "[countTrianglesBox]") {
   IntersectionList il(lineList);
   int M = countTriangles(il);
 
-  // TODO: Remove this comment when count works correctly.
-  // CHECK(M == 8);
+  CHECK(M == 8);
+}
+
+TEST_CASE("Testing provided test case.", "[countTrianglesSampleIn]") {
+  Line l1(1.350, 1.890, 3.825, 3.330);
+  Line l2(3.915, 1.575, 2.385, 3.690);
+  Line l3(1.350, 2.295, 4.545, 1.845);
+  Line l4(2.250, 1.710, 4.140, 3.060);
+  Line l5(2.250, 3.150, 3.465, 1.755);
+
+  IntersectionList il = {l1, l2, l3, l4, l5};
+
+  int M = countTriangles(il);
+  std::vector<bool> insec = il.getIntersections();
+  std::cout << "Test case intersections: ";
+  for (auto e : insec) {
+    std::cout << e << " ";
+  }
+  std::cout << std::endl;
+
+  CHECK(M == 4);
 }

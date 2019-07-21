@@ -1,3 +1,6 @@
 build/
 compile_commands.json
 otest.cpp
+*.py
+*.ans
+*.in
